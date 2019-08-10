@@ -1,8 +1,8 @@
 ---
 - name: Playbook for http server
   hosts: test
-  vars:
-    name: ajay
+  vars_files:
+    - vars.yml
   tasks:
    - name: http installation {{ name }}
      yum:
