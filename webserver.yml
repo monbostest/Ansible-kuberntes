@@ -1,0 +1,8 @@
+---
+- name: Playbook for http server
+  hosts: test
+  tasks:
+   - name: http installation
+     yum:
+      name: httpd
+      state: latest
