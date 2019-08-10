@@ -1,8 +1,10 @@
 ---
 - name: Playbook for http server
   hosts: test
+  vars:
+    name: ajay
   tasks:
-   - name: http installation
+   - name: http installation {{ name }}
      yum:
       name: httpd
       state: latest
@@ -19,3 +21,8 @@
      copy:
       src: /opt/index.html
       dest: /var/www/html
+  
+   - name: checking variable
+     debug:
+      msg: "{{name}}"
+
