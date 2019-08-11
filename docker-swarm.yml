@@ -1,13 +1,26 @@
 ---
 - name: Docker Swarm
   hosts: test
+  user: ansadm
+  become: yes
+  become_method: sudo
   tasks:
-  - name: testing loop
+  - name: Ading yum repo
+    yum_repository:
+     name: doker_repo
+     description: Docker Repository
+     baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+     gpgcheck: no
+
+  - name: This will install multiple packages using loop function.
     yum:
       name: "{{ item }}"
-      state: installed
-      with_items:
+      state: latest
+    loop:
        - yum-utils
        - device-mapper-persistent-data
        - lvm2
+       - docker-ce 
+       - docker-ce-cli 
+       - containerd.io
 
